@@ -70,4 +70,78 @@ router.put("/canciones/:id", async (req, res) => {
   }
 });
 
+router.get("/artistas", async (req, res) => {
+  try {
+    const artistas = await db.Artista.findAll();
+
+    res.json(artistas);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Ha ocurrido un error al buscar el artista." });
+  }
+});
+
+
+
+router.post("/artistas", async (req, res) => {
+  try {
+    const newArtista = await db.Artista.create(req.body);
+
+    res.status(201).json(newArtista);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Ha ocurrido un error al crear el artista." });
+  }
+});
+
+router.get("/generos", async (req, res) => {
+  try {
+    const generos = await db.Genero.findAll();
+
+    res.json(generos);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Ha ocurrido un error al buscar los generos." });
+  }
+});
+
+router.post("/generos", async (req, res) => {
+  try {
+    const genero= await db.Genero.create(req.body);
+
+    res.status(201).json(genero);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Ha ocurrido un error al crear el genero." });
+  }
+});
+
+router.get("/albumes", async (req, res) => {
+  try {
+    const albumes = await db.Album.findAll();
+
+    res.json(albumes);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Ha ocurrido un error al buscar los albumes." });
+  }
+});
+
+router.post("/albumes", async (req, res) => {
+  try {
+    const album = await db.Album.create(req.body);
+
+    res.status(201).json(album);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Ha ocurrido un error al crear el album." });
+  }
+});
+
 module.exports = router;
